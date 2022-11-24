@@ -5,7 +5,7 @@ const CategoryCard = ({ phnCategory }) => {
     return (
         <div className="flex flex-col items-center justify-center w-full max-w-sm">
             <div className="w-full h-80 bg-gray-300 bg-center bg-cover rounded-lg shadow-md ">
-                <img className='w-full h-80 object-cover' src={phnCategory?.img} alt="" />
+                <img className='w-full h-80 object-cover' src={phnCategory?.img} alt="img" />
             </div>
 
             <div className="w-56 -mt-5 overflow-hidden bg-indigo-600 hover:bg-indigo-700 cursor-pointer flex items-center text-white justify-center gap-3 rounded-lg shadow-lg md:w-64">

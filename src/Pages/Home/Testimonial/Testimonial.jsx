@@ -1,10 +1,9 @@
-
 import React from 'react'
 import TestimonialDetails from './TestimonialDetails';
 
 
-
 const Testimonial = () => {
+
   return (
     <div className="relative mx-auto py-6 px-4 w-full bg-gray-50 text-gray-800 mb-12">
       <div className="flex flex-col items-center">
