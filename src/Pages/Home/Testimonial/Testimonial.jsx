@@ -35,7 +35,7 @@ const Testimonial = () => {
 
             {
               reviews.map(review =>
-                <TestimonialDetails key={review.key} review={review} />)
+                <TestimonialDetails key={review._id} review={review} />)
             }
           </ul>
         </div>

@@ -1,37 +1,31 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import CategoryCard from '../../Shared/components/CategoryCard/CategoryCard';
+import Loading from '../../Shared/components/Loading/Loading';
 
 const Categories = () => {
-    const phonesCategories = [
-        {
-            id: 1,
-            name: 'Samsung',
-            img: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-        },
-        {
-            id: 2,
-            name: 'iPhone',
-            img: 'https://images.unsplash.com/photo-1604671368394-2240d0b1bb6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80'
-        },
-        {
-            id: 3,
-            name: 'Xiaomi',
-            img: 'https://images.unsplash.com/photo-1560677519-9e47f8731d07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
-        },
-        {
-            id: 4,
-            name: 'Oppo',
-            img: 'https://images.unsplash.com/photo-1644982649363-fae51da44eac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/categories`)
+            const data = await res.json()
+            return data;
         }
-    ]
+    })
+
+    if (isLoading) {
+        return <Loading />
+    }
+
     return (
         <div className='px-6 py-14'>
             <h2 className='text-xl sm:text-3xl md:text-4xl font-semibold text-indigo-600 mb-5'>All Categories</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
 
                 {
-                    phonesCategories.map(phnCategory =>
-                        <CategoryCard key={phnCategory.id}
+                    categories.map(phnCategory =>
+                        <CategoryCard key={phnCategory._id}
                             phnCategory={phnCategory}
                         />)
                 }
