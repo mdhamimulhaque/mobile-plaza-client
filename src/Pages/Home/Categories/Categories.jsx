@@ -26,7 +26,7 @@ const Categories = () => {
     ]
     return (
         <div className='px-6 py-14'>
-            <h2 className='text-xl sm:text-3xl font-semibold text-indigo-600 mb-5'>All Categories</h2>
+            <h2 className='text-xl sm:text-3xl md:text-4xl font-semibold text-indigo-600 mb-5'>All Categories</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
 
                 {
