@@ -17,18 +17,6 @@ const Banner = () => {
                 <h1 className="text-5xl sm:text-7xl font-mulish">Buyers and Sellers</h1>
                 <p className="max-w-lg py-5 font-thin leading-relaxed">Phone Bazar is the fastest online marketplace. Start buying and selling today! Make shopping SIMPLE, SECURE and FAST on the largest marketplace. Discover what you need and sell all sorts of products in our simple yet powerful platform.</p>
 
-                {/* ::Download App */}
-                <div className="flex-shrink-0 py-5 flex flex-col sm:flex-row items-center">
-                    {/* Apple Store */}
-                    <a href="#link" className="py-2 sm:pr-5">
-                        <img src="https://fancytailwind.com/static/badge-apple-store-white-transparent-" alt="" className="w-40" />
-                    </a>
-                    {/* Google Store */}
-                    <a href="#link" className="py-2 sm:pl-5">
-                        <img src="https://fancytailwind.com/static/badge-play-store-white-transparent-" alt="" className="w-40" />
-                    </a>
-                </div>
-
             </div>
 
         </div>

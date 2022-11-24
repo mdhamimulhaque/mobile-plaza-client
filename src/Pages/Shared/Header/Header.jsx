@@ -27,7 +27,7 @@ const Header = () => {
     ]
     return (
         <nav className="px-6 py-2 bg-white shadow-md md:flex ">
-            <div className="flex justify-between items-center w-full md:w-2/5">
+            <div className="flex justify-between items-center w-full md:w-3/6">
                 <div className="text-2xl text-gray-800 font-bold hover:text-gray-800">
                     <Link to="/" className='flex items-center'>
                         <img className='w-12 mr-2' src={LOGO} alt="logo" />
