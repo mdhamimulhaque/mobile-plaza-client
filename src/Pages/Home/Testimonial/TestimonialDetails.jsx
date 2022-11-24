@@ -1,20 +1,20 @@
 import React from 'react';
 
-const TestimonialDetails = () => {
+const TestimonialDetails = ({ review }) => {
+
     return (
 
         <li className="col-span-full lg:col-span-1 relative py-5 px-4 flex flex-col justify-between rounded text-center">
 
-            <p className="z-10 relative mt-2 text-gray-600 font-serif">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, sunt.</p>
+            <p className="z-10 relative mt-2 text-gray-600 font-serif">{review?.reviewText}</p>
 
             <div className="z-10 relative mt-5 flex flex-col items-center">
                 <span className="w-20 h-20 rounded-full border-2 border-indigo-50 overflow-hidden">
-                    <img src="https://img.freepik.com/free-vector/stylish-black-friday-sale-label-background_1017-34629.jpg?w=826&t=st=1669286880~exp=1669287480~hmac=e51ba2926044447f427863a4c0807603d40d76a6c6f57370ec3c851a3fa4ed25" alt="img"
-                        className="object-cover filter grayscale" />
+                    <img src={review?.img} alt="img"
+                        className="object-cover filter grayscale h-full w-full" />
                 </span>
                 <div className="ml-3 inline-flex flex-col">
-                    <h3 className="text-lg font-semibold">Name</h3>
-                    <p className="text-sm text-gray-400 font-bold uppercase">company</p>
+                    <h3 className="text-lg font-semibold">{review?.name}</h3>
                 </div>
             </div>
 
