@@ -1,11 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
+
 
 const Blog = () => {
-    useEffect(() => {
-        fetch(`Products.json`)
-            .then(res => res.json())
-            .then(data => console.log(data))
-    }, [])
+
+    // --->time
+    const today = new Date();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    console.log(time)
+
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
+
+    // ---> date
+    let date = `${day}-${month}-${year}`;
+    console.log(date);
+
+
     return (
         <div>
             blogs
