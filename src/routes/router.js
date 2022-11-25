@@ -3,6 +3,8 @@ import Error from "../Pages/Error/Error";
 import Blog from "../Pages/Blog/Blog";
 import Main from "../Layouts/Main";
 import SingleCategory from "../Pages/Home/SingleCategory/SingleCategory";
+import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Registration/Registration";
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog />
             },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/registration',
+                element: <Registration />
+            }
         ]
     }
 ])
