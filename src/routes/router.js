@@ -5,6 +5,9 @@ import Main from "../Layouts/Main";
 import SingleCategory from "../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+
+
+
 const { createBrowserRouter } = require("react-router-dom");
 
 const router = createBrowserRouter([
@@ -21,18 +24,19 @@ const router = createBrowserRouter([
                 path: '/category/:categoryName',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryName}`),
                 element: < SingleCategory />
+
             },
             {
                 path: '/blog',
                 element: <Blog />
             },
             {
-                path: '/login',
-                element: <Login />
-            },
-            {
                 path: '/registration',
                 element: <Registration />
+            },
+            {
+                path: '/log-in',
+                element: <Login />
             }
         ]
     }

@@ -9,6 +9,7 @@ import LOGO from "../../img/logo.png";
 const Login = () => {
     const { loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+    const [loginError, setLoginError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -20,6 +21,7 @@ const Login = () => {
         navigate(from, { replace: true });
     }
 
+
     // --->handle login
     const handleLogin = data => {
         const email = data.email;
@@ -28,9 +30,14 @@ const Login = () => {
         loginUser(email, password)
             .then(data => {
                 if (data.user.uid) {
-                    setLoginUserEmail(email)
-                    toast.success('login successfully!!')
+                    setLoginUserEmail(email);
+                    setLoginError('');
+                    toast.success('login successfully!!');
                 }
+            })
+            .catch(err => {
+                console.log(err);
+                setLoginError(err.message)
             })
     };
 
@@ -51,7 +58,7 @@ const Login = () => {
                 </div>
                 <div className="w-full py-6 z-20">
                     <h1 className="my-6 text-white flex items-center justify-center font-semibold text-3xl">
-                        <img src={LOGO} alt="login" /> <span>Mobile Plaza</span>
+                        <img src={LOGO} alt="logo" /> <span>Mobile Plaza</span>
                     </h1>
                     <div className="sm:w-2/3 px-4 lg:px-0 mx-auto flex justify-center mb-2">
                         <button className="flex items-center justify-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"          >
@@ -87,6 +94,7 @@ const Login = () => {
                         </div>
                         <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
                             <Link to="#">Forgot your password?</Link>
+                            <p className='text-red-400 my-2'>{loginError}</p>
                         </div>
                         <div className="px-4 pb-2 pt-4">
                             <button className="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">Log in</button>

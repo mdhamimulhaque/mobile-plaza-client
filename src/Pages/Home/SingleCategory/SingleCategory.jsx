@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from '../../Shared/components/BookingModal/BookingModal';
 import ProductCard from '../ProductCard/ProductCard';
 
 const SingleCategory = () => {
     const products = useLoaderData();
+    const [modalData, setModalData] = useState(null)
+    const [isModalOpen, setIsOpenModal] = useState(false);
+    // --->handle modal 
+    const handleModalOpen = (e) => {
+        setModalData(e);
+        setIsOpenModal(!isModalOpen)
+    }
+
+    const handleCloseModal = () => {
+        setIsOpenModal(!isModalOpen)
+    }
     return (
         <section className='xl::h-screen'>
             <div className="container px-6 py-10 mx-auto">
@@ -12,9 +24,19 @@ const SingleCategory = () => {
                 <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
                     {
                         products.map(product =>
-                            <ProductCard key={product._id} product={product} />)
+                            <ProductCard
+                                key={product._id}
+                                product={product}
+                                handleModalOpen={handleModalOpen}
+                            />)
                     }
                 </div>
+
+                <BookingModal
+                    isModalOpen={isModalOpen}
+                    handleCloseModal={handleCloseModal}
+                    modalData={modalData}
+                />
 
             </div>
         </section>

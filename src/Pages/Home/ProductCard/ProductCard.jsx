@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { HiOutlineClock, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
+import { AuthContext } from '../../../context/AuthProvider';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, handleModalOpen }) => {
+    const { user } = useContext(AuthContext);
+
+
     const { condition, description, location, imgURL, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
     return (
         <div className="lg:flex shadow-lg px-3">
@@ -25,7 +29,7 @@ const ProductCard = ({ product }) => {
                 </div>
 
                 <div className='text-sm leading-[25px]'>
-                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle /> <strong>Name</strong></h4>
+                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle /> <strong>{user?.displayName}</strong></h4>
                     <h4 className='flex items-center gap-2'><span><HiOutlineLocationMarker /></span> {location}</h4>
                     <div>{description}</div>
                     <h4><strong>Year of Used:</strong> {yearOfUse}+</h4>
@@ -42,10 +46,13 @@ const ProductCard = ({ product }) => {
                         <HiOutlineCalendar className='mr-2' /> {postedDate}
                     </span>
                 </span>
-                <button type="button" className="py-2 px-4 mt-3 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                <button type="button"
+                    onClick={() => handleModalOpen(product)}
+                    className="py-2 px-4 mt-3 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                     Booked Now
                 </button>
             </div>
+
         </div>
     );
 };
