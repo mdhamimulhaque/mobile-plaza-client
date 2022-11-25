@@ -14,9 +14,10 @@ const Registration = () => {
     const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate();
     const [token] = useToken(userEmail)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const imgHostKey = process.env.REACT_APP_imgbb_key;
+
     if (token) {
         navigate('/')
     }

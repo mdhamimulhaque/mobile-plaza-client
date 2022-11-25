@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../context/AuthProvider';
 import LOGO from '../../../img/logo.png'
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const { user, logOut } = useContext(AuthContext);
+
+
     const handleResponsiveNav = () => {
         setIsOpen(!isOpen)
     }
@@ -25,6 +30,15 @@ const Header = () => {
             path: '/blog'
         }
     ]
+
+
+    // ---> handle logout
+    const handleLogOut = () => {
+        logOut()
+            .then(result => {
+                toast.success('logOut successfully')
+            })
+    }
     return (
         <nav className="px-6 py-2 bg-white shadow-md md:flex ">
             <div className="flex justify-between items-center w-full md:w-3/6">
@@ -55,18 +69,27 @@ const Header = () => {
                     }
 
                 </div>
-                <div className=" flex item-center gap-2">
-                    <Link to="/login">
-                        <button type="button" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                            LogIn
-                        </button>
-                    </Link>
-                    <Link to="/registration">
-                        <button type="button" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                            Registration
-                        </button>
-                    </Link>
-                </div>
+                {
+                    user?.uid ?
+                        <Link to="/login" onClick={handleLogOut}>
+                            <button type="button" className="py-2 px-4  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                Log out
+                            </button>
+                        </Link> :
+                        <div className=" flex item-center gap-2">
+                            <Link to="/login">
+                                <button type="button" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                    LogIn
+                                </button>
+                            </Link>
+                            <Link to="/registration">
+                                <button type="button" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                                    Registration
+                                </button>
+                            </Link>
+                        </div>
+                }
+
             </div>
         </nav>
     );
