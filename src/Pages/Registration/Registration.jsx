@@ -2,16 +2,26 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiOutlineUser, HiOutlineDevicePhoneMobile, HiOutlineEnvelope, HiOutlineLockClosed } from "react-icons/hi2";
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
+
 
 const Registration = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [regiError, setRegiError] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const navigate = useNavigate();
+    const [token] = useToken(userEmail)
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const imgHostKey = process.env.REACT_APP_imgbb_key;
+    if (token) {
+        navigate('/')
+    }
 
+    // --->handle registration
     const handleRegistration = data => {
         const image = data.image[0];
         const formData = new FormData();
@@ -71,6 +81,7 @@ const Registration = () => {
                 })
                 .then((res) => {
                     if (res.statusText === 'OK') {
+                        setUserEmail(data.email)
                         setRegiError('');
                         toast.success('Registration successfully!!');
                     }
