@@ -6,7 +6,7 @@ import { AuthContext } from '../../../../context/AuthProvider';
 
 const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal }) => {
 
-    const { name, originalPrice, resellPrice } = modalData;
+    const { name, resellPrice } = modalData;
     const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
 
@@ -40,16 +40,9 @@ const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal
                 <div className="2xl:container  2xl:mx-auto py-10 px-4 md:px-28 flex justify-center items-center">
                     <div className="w-96 md:w-auto  relative flex flex-col justify-center items-center bg-white py-16 px-4 md:px-24 xl:py-24 xl:px-36">
                         <div className="doctor_info_box flex flex-col justify-center">
-                            <h2 className='text-2xl lg:text-3xl font-semibold text-indigo-400 px-2'>{name}</h2>
-                            <div className="price_box flex justify-center gap-3 my-2">
-                                <div className='flex flex-col my-1'>
-                                    <small className='text-xs'>Original Price</small>
-                                    <span className='font-semibold text-xl text-red-600 line-through'>${originalPrice}</span>
-                                </div>
-                                <div className='flex flex-col my-1'>
-                                    <small className='text-xs'>Resell Price</small>
-                                    <span className='font-semibold text-xl text-indigo-600'>${resellPrice}</span>
-                                </div>
+                            <h2 className='text-2xl lg:text-3xl font-semibold text-indigo-600 px-2'>{name}</h2>
+                            <div className='flex justify-center my-2'>
+                                <span className='font-semibold text-3xl text-red-600'>Price: ${resellPrice}</span>
                             </div>
                         </div>
 

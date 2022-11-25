@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../hooks/useToken';
+import Loading from '../Shared/components/Loading/Loading';
 
 
 const Registration = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, loading, setLoading } = useContext(AuthContext);
     const [regiError, setRegiError] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate();
@@ -59,6 +60,7 @@ const Registration = () => {
                             setRegiError(err.message);
                             console.log(err)
                         })
+                        .finally(setLoading(false))
 
                 }
             })
@@ -77,7 +79,7 @@ const Registration = () => {
 
             // ---> data store to server (axios)
             axios
-                .post('http://localhost:5000/users', {
+                .put('http://localhost:5000/users', {
                     body: userInfo
                 })
                 .then((res) => {
@@ -86,7 +88,8 @@ const Registration = () => {
                         setRegiError('');
                         toast.success('Registration successfully!!');
                     }
-                });
+                })
+                .catch(err => console.log(err))
         }
 
     };

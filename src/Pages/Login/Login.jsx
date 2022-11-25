@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,17 +9,21 @@ import useToken from '../../hooks/useToken';
 import LOGO from "../../img/logo.png";
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
+    const { loginUser, googleLogin } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [userEmail, setUserEmail] = useState();
     const navigate = useNavigate();
     const location = useLocation();
-    const [loginUserEmail, setLoginUserEmail] = useState('');
+
     const [token] = useToken(loginUserEmail);
 
     let from = location.state?.from?.pathname || "/";
 
-    // --->handle login
+    const googleProvider = new GoogleAuthProvider();
+
+    // --->handle password login
     const handleLogin = data => {
         const email = data.email;
         const password = data.password;
@@ -36,6 +42,58 @@ const Login = () => {
                 setLoginError(err.message)
             })
     };
+
+    // ---> handle google login
+    const handleGoogleLogin = () => {
+        googleLogin(googleProvider)
+            .then(res => {
+                if (res?.user?.uid) {
+                    const email = res.user?.email;
+                    const userImg = res.user?.phoneNumber;
+                    const name = res.user?.displayName;
+                    setUserEmail(email);
+                    saveUserInfo(name, userImg, email);
+                    setLoginUserEmail(email)
+                }
+                setLoginError('');
+            })
+            .catch(err => {
+                setLoginError(err.message)
+                console.err(err)
+            })
+    }
+    // --->save userInfo to database
+    const saveUserInfo = (name, userImg, email) => {
+        // -->user data
+        const userInfo = {
+            name: name,
+            email: email,
+            phone: 'not available',
+            img: userImg,
+            role: 'buyer',
+        }
+
+        //     // ---> data store to server (axios)
+        axios
+            .put('http://localhost:5000/users', {
+                body: userInfo
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    setLoginError('');
+                    toast.success('Login successfully!!');
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                setLoginError(err.message);
+            })
+    }
+
+
+
+
 
     return (
         <section className="min-h-screen flex items-stretch text-white ">
@@ -57,7 +115,7 @@ const Login = () => {
                         <img src={LOGO} alt="logo" /> <span>Mobile Plaza</span>
                     </h1>
                     <div className="sm:w-2/3 px-4 lg:px-0 mx-auto flex justify-center mb-2">
-                        <button className="flex items-center justify-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"          >
+                        <button onClick={handleGoogleLogin} className="flex items-center justify-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"          >
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mr-3" viewBox="0 0 48 48"            >
                                 <path fill="#fbc02d" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
                                 <path fill="#e53935" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
