@@ -10,6 +10,10 @@ import CategoryPage from "../Pages/CategoryPage/CategoryPage";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import MyProducts from "../Pages/DashBoard/MyProducts/MyProducts";
 import MyBuyers from "../Pages/DashBoard/MyBuyers/MyBuyers";
+import AllSellers from "../Pages/DashBoard/AllSellers/AllSellers";
+import AddProduct from "../Pages/DashBoard/AddProduct/AddProduct";
+import AllBuyers from "../Pages/DashBoard/AllBuyers/AllBuyers";
+import MyOrders from "../Pages/DashBoard/MyOrders/MyOrders";
 
 
 
@@ -57,12 +61,28 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
             {
+                path: '/dashboard/my-orders',
+                element: <MyOrders />
+            },
+            {
                 path: '/dashboard/my-products',
                 element: <MyProducts />
             },
             {
                 path: '/dashboard/my-buyers',
                 element: <MyBuyers />
+            },
+            {
+                path: '/dashboard/all-sellers',
+                element: <AllSellers />
+            },
+            {
+                path: '/dashboard/all-buyers',
+                element: <AllBuyers />
+            },
+            {
+                path: '/dashboard/add-product',
+                element: <AddProduct />
             },
 
         ]
