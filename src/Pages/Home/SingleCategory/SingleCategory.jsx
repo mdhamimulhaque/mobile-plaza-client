@@ -5,7 +5,7 @@ import ProductCard from '../ProductCard/ProductCard';
 
 const SingleCategory = () => {
     const products = useLoaderData();
-    const [modalData, setModalData] = useState(null)
+    const [modalData, setModalData] = useState({})
     const [isModalOpen, setIsOpenModal] = useState(false);
     // --->handle modal 
     const handleModalOpen = (e) => {
@@ -14,6 +14,7 @@ const SingleCategory = () => {
     }
 
     const handleCloseModal = () => {
+        setModalData('');
         setIsOpenModal(!isModalOpen)
     }
     return (
@@ -36,6 +37,7 @@ const SingleCategory = () => {
                     isModalOpen={isModalOpen}
                     handleCloseModal={handleCloseModal}
                     modalData={modalData}
+                    setIsOpenModal={setIsOpenModal}
                 />
 
             </div>

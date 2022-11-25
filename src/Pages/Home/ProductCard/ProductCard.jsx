@@ -6,6 +6,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
     const { user } = useContext(AuthContext);
 
 
+
     const { condition, description, location, imgURL, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
     return (
         <div className="lg:flex shadow-lg px-3">

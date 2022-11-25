@@ -81,7 +81,7 @@ const Registration = () => {
                     body: userInfo
                 })
                 .then((res) => {
-                    if (res.statusText === 'OK') {
+                    if (res.status === 200) {
                         setUserEmail(data.email)
                         setRegiError('');
                         toast.success('Registration successfully!!');
