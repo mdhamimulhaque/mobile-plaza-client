@@ -10,17 +10,12 @@ const Login = () => {
     const { loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
 
     let from = location.state?.from?.pathname || "/";
-
-    if (token) {
-        navigate(from, { replace: true });
-    }
-
 
     // --->handle login
     const handleLogin = data => {
@@ -33,6 +28,7 @@ const Login = () => {
                     setLoginUserEmail(email);
                     setLoginError('');
                     toast.success('login successfully!!');
+                    navigate(from, { replace: true });
                 }
             })
             .catch(err => {

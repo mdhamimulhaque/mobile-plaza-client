@@ -5,6 +5,7 @@ import Main from "../Layouts/Main";
 import SingleCategory from "../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
             {
                 path: '/category/:categoryName',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryName}`),
-                element: < SingleCategory />
+                element: <PrivateRoute>
+                    < SingleCategory />
+                </PrivateRoute>
 
             },
             {
