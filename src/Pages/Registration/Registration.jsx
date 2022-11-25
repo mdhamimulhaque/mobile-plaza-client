@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Registration = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
     const [regiError, setRegiError] = useState('');
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -30,29 +30,19 @@ const Registration = () => {
                     // --->create user
                     createUser(data.email, data.password)
                         .then(fireData => {
-                            if (fireData.user?.uid) {
-                                // -->user data
-                                const userInfo = {
-                                    name: data.name,
-                                    email: data.email,
-                                    phone: data.phone,
-                                    img: imgData.data.url,
-                                    role: data.role,
-                                    userPass: data.password
-                                }
-
-                                // ---> data store to server (axios)
-                                axios
-                                    .post('http://localhost:5000/users', {
-                                        body: userInfo
-                                    })
-                                    .then((res) => {
-                                        if (res.statusText === 'OK') {
-                                            setRegiError('');
-                                            toast.success('Registration successfully!!');
-                                        }
-                                    });
+                            // ---> update userInfo
+                            const updateInfo = {
+                                displayName: data.name,
+                                photoURL: imgData.data.url
                             }
+                            // --->update user
+                            updateUser(updateInfo)
+                                .then(() => {
+                                    const updateName = fireData?.user?.displayName;
+                                    const userImg = fireData?.user?.photoURL;
+                                    saveUserInfo(updateName, userImg)
+                                })
+                                .catch(err => console.error(err))
                         })
                         .catch(err => {
                             setRegiError(err.message);
@@ -61,6 +51,31 @@ const Registration = () => {
 
                 }
             })
+
+        // --->save userInfo to database
+        const saveUserInfo = (name, userImg) => {
+            // -->user data
+            const userInfo = {
+                name: name,
+                email: data.email,
+                phone: data.phone,
+                img: userImg,
+                role: data.role,
+            }
+
+
+            // ---> data store to server (axios)
+            axios
+                .post('http://localhost:5000/users', {
+                    body: userInfo
+                })
+                .then((res) => {
+                    if (res.statusText === 'OK') {
+                        setRegiError('');
+                        toast.success('Registration successfully!!');
+                    }
+                });
+        }
 
     };
 
