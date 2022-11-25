@@ -6,6 +6,11 @@ import SingleCategory from "../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import CategoryPage from "../Pages/CategoryPage/CategoryPage";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import MyProducts from "../Pages/DashBoard/MyProducts/MyProducts";
+import MyBuyers from "../Pages/DashBoard/MyBuyers/MyBuyers";
+
 
 
 
@@ -20,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/categories',
+                element: <CategoryPage />
             },
             {
                 path: '/category/:categoryName',
@@ -41,6 +50,21 @@ const router = createBrowserRouter([
                 path: '/log-in',
                 element: <Login />
             }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        children: [
+            {
+                path: '/dashboard/my-products',
+                element: <MyProducts />
+            },
+            {
+                path: '/dashboard/my-buyers',
+                element: <MyBuyers />
+            },
+
         ]
     }
 ])

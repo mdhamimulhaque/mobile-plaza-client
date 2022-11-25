@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 import BookingModal from '../../Shared/components/BookingModal/BookingModal';
+import Loading from '../../Shared/components/Loading/Loading';
 import ProductCard from '../ProductCard/ProductCard';
 
 const SingleCategory = () => {
     const products = useLoaderData();
     const [modalData, setModalData] = useState({})
     const [isModalOpen, setIsOpenModal] = useState(false);
+    const { loading, setLoading } = useContext(AuthContext);
+
+    if (loading) {
+        return <Loading />
+    }
+
     // --->handle modal 
     const handleModalOpen = (e) => {
         setModalData(e);

@@ -53,7 +53,8 @@ const Login = () => {
                     const name = res.user?.displayName;
                     setUserEmail(email);
                     saveUserInfo(name, userImg, email);
-                    setLoginUserEmail(email)
+                    setLoginUserEmail(email);
+                    navigate(from, { replace: true });
                 }
                 setLoginError('');
             })
@@ -82,7 +83,6 @@ const Login = () => {
                 if (res.status === 200) {
                     setLoginError('');
                     toast.success('Login successfully!!');
-                    navigate(from, { replace: true });
                 }
             })
             .catch(err => {
