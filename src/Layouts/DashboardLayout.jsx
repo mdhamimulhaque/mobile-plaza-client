@@ -6,7 +6,7 @@ import { HiOutlineListBullet } from "react-icons/hi2";
 const DashboardLayout = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
-        <div className='relative'>
+        <div className='relative bg-indigo-50'>
             <div className='p-6'>
                 <HiOutlineListBullet className={!isOpen ? 'text-2xl block' : "hidden"} onClick={() => setIsOpen(!isOpen)} />
             </div>

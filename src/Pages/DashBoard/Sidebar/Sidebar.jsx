@@ -7,7 +7,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
     const sidebarNavItems = [
         {
             name: 'My Orders',
-            path: '/dashboard/my-orders'
+            path: '/dashboard'
         },
         {
             name: 'My Products',
