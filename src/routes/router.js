@@ -16,6 +16,7 @@ import AllBuyers from "../Pages/DashBoard/AllBuyers/AllBuyers";
 import MyOrders from "../Pages/DashBoard/MyOrders/MyOrders";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 
 
@@ -68,14 +69,20 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/my-products',
-                element: <MyProducts />
+                element: <SellerRoute>
+                    <MyProducts />
+                </SellerRoute>
             },
             {
                 path: '/dashboard/my-buyers',
-                element: <MyBuyers />
+                element: <SellerRoute>
+                    <MyBuyers />
+                </SellerRoute>
             }, {
                 path: '/dashboard/add-product',
-                element: <AddProduct />
+                element: <SellerRoute>
+                    <AddProduct />
+                </SellerRoute>
             },
             {
                 path: '/dashboard/all-sellers',

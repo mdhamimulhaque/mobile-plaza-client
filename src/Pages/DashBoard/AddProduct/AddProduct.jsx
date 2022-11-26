@@ -60,7 +60,8 @@ const AddProduct = () => {
                         postedTime: time,
                         condition: data.condition,
                         description: data.description,
-                        location: data.location
+                        location: data.location,
+                        userEmail: user?.email
 
                     }
 
