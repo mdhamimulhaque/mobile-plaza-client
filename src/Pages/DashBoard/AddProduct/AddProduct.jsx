@@ -116,7 +116,7 @@ const AddProduct = () => {
                                 <input
                                     {...register('yearOfUse')}
                                     class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="productName" type="text" placeholder="location" />
+                                    id="productName" type="text" placeholder="Year Of Purchase" />
                             </div>
 
                             <div class="w-full px-3 mb-6 md:w-1/2 ">
@@ -224,7 +224,7 @@ const AddProduct = () => {
 
 
                     </div>
-                    <p className='text-red-400 py-2'>{productError}</p>
+                    <p className='text-red-400 py-2 text-center'>{productError}</p>
                     <div class="flex items-center justify-end p-5 text-center bg-gray-200">
                         <button type="submit"
                             class="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
