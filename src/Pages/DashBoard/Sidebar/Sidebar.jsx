@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { HiOutlineXMark } from "react-icons/hi2";
 import LOGO from "../../../img/logo.png"
 
+
 const Sidebar = ({ setIsOpen, isOpen }) => {
     const sidebarNavItems = [
         {

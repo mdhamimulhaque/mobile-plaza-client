@@ -37,7 +37,7 @@ const Registration = () => {
         })
             .then(res => res.json())
             .then(imgData => {
-                if (imgData.success) {
+                if (imgData.success === true) {
 
                     // --->create user
                     createUser(data.email, data.password)
