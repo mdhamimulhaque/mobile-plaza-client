@@ -9,11 +9,7 @@ const Categories = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categories?email=${user?.email}`, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
+            const res = await fetch(`http://localhost:5000/categories`)
             const data = await res.json()
             return data;
         }

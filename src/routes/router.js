@@ -14,6 +14,7 @@ import AllSellers from "../Pages/DashBoard/AllSellers/AllSellers";
 import AddProduct from "../Pages/DashBoard/AddProduct/AddProduct";
 import AllBuyers from "../Pages/DashBoard/AllBuyers/AllBuyers";
 import MyOrders from "../Pages/DashBoard/MyOrders/MyOrders";
+import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/add-product',
                 element: <AddProduct />
+            },
+            {
+                path: '/dashboard/all-users',
+                element: <AllUsers />
             },
 
         ]

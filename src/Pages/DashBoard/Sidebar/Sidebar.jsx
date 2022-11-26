@@ -32,6 +32,10 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
             name: 'All Buyers',
             path: '/dashboard/all-buyers'
         },
+        {
+            name: 'All Users',
+            path: '/dashboard/all-users'
+        },
 
 
     ]
