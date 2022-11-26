@@ -1,11 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import useToken from '../../../hooks/useToken';
 
 
 const AddProduct = () => {
     const { register, handleSubmit } = useForm();
-    const [productError, setProductError] = useState('')
+    const [productError, setProductError] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
+    const navigate = useNavigate();
 
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
@@ -63,9 +69,10 @@ const AddProduct = () => {
                         })
                         .then((res) => {
                             if (res.status === 200) {
-                                // setUserEmail(data.email)
-                                // setRegiError('');
-                                // toast.success('Registration successfully!!');
+                                setUserEmail(data.email);
+                                setProductError('');
+                                toast.success('Product Added successfully!!');
+                                navigate('/dashboard/my-products')
                             }
                         })
                         .catch(err => {
@@ -116,7 +123,7 @@ const AddProduct = () => {
                                 <input
                                     {...register('yearOfUse')}
                                     class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                                    id="productName" type="text" placeholder="Year Of Purchase" />
+                                    id="productName" type="number" placeholder="Year Of Purchase" />
                             </div>
 
                             <div class="w-full px-3 mb-6 md:w-1/2 ">

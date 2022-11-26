@@ -15,7 +15,7 @@ const MyProductsTable = () => {
     ]
 
     return (
-        <div className="mx-auto pb-8 w-full max-w-7xl overflow-x-auto">
+        <div className="mx-auto pb-8 w-full max-w-7xl overflow-x-auto px-6">
             <table className="px-4 min-w-full rounded-md border border-gray-200 overflow-hidden">
 
                 {/* :TABLE HEAD */}
