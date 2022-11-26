@@ -1,14 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthProvider';
 import CategoryCard from '../../Shared/components/CategoryCard/CategoryCard';
 import Loading from '../../Shared/components/Loading/Loading';
 
 const Categories = () => {
-
+    const { user } = useContext(AuthContext)
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categories`)
+            const res = await fetch(`http://localhost:5000/categories?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json()
             return data;
         }

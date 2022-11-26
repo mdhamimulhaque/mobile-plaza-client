@@ -10,6 +10,15 @@ const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal
     const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
 
+
+    // ---> date
+    const today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
+
+    let date = `${day}-${month}-${year}`;
+
     // ---> handleBooking
     const handleBooked = data => {
         const bookingInfo = {
@@ -18,7 +27,8 @@ const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal
             phone: data.phone,
             location: data.location,
             productName: name,
-            price: resellPrice
+            price: resellPrice,
+            date
         }
 
         axios
