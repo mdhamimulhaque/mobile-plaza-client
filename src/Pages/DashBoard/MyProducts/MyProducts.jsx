@@ -3,7 +3,7 @@ import MyProductsTable from '../DashboardComponents/MyProductsTable/MyProductsTa
 
 const MyProducts = () => {
     return (
-        <div className='bg-indigo-50'>
+        <div className='bg-indigo-50 h-screen'>
             <h2 className='text-3xl lg:text-4xl font-semibold text-center mb-3 text-indigo-600 py-4'>My Products</h2>
             <MyProductsTable />
         </div>
