@@ -15,6 +15,8 @@ const SingleCategory = () => {
 
     if (loading) {
         return <Loading />
+    } else {
+        setLoading(false)
     }
 
     // --->handle modal 
