@@ -6,9 +6,10 @@ import { AuthContext } from '../../../../context/AuthProvider';
 
 const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal }) => {
 
-    const { name, resellPrice } = modalData;
+    const { name, resellPrice, imgURL } = modalData;
     const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+
 
 
     // ---> date
@@ -28,6 +29,7 @@ const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal
             location: data.location,
             productName: name,
             price: resellPrice,
+            imgURL: imgURL,
             date
         }
 
