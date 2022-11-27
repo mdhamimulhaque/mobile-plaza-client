@@ -1,6 +1,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react'
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../context/AuthProvider'
 import Loading from '../../../Shared/components/Loading/Loading';
@@ -9,7 +10,7 @@ import Loading from '../../../Shared/components/Loading/Loading';
 const MyProductsTable = () => {
     const { user } = useContext(AuthContext);
 
-    const { data: bookData = [user?.email], isLoading, refetch } = useQuery({
+    const { data: myProductsData = [user?.email], isLoading, refetch } = useQuery({
         queryKey: ['my-products'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`)
@@ -61,6 +62,26 @@ const MyProductsTable = () => {
 
     }
 
+    // ---> handle advertisement
+    const handleAdvertisement = (id) => {
+        fetch(`http://localhost:5000/my-products/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('Advertisement added successfully');
+                    refetch()
+                }
+
+            })
+    }
+
     return (
         <div className="mx-auto pb-8 w-full max-w-7xl overflow-x-auto px-6">
             <table className="px-4 min-w-full rounded-md border border-gray-200 overflow-hidden">
@@ -78,21 +99,23 @@ const MyProductsTable = () => {
                 </thead>
 
                 <tbody className="text-center">
-                    {bookData?.map((booking, index) => (
-                        <tr key={booking?._id} className={`${index % 2 === 0 ? "bg-gray-50" : "bg-gray-100"} whitespace-nowrap`}>
-                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{booking?.Category}</td>
-                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{booking?.name}</td>
-                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{booking?.originalPrice}</td>
-                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{booking?.userEmail}</td>
+                    {myProductsData?.map((myProduct, index) => (
+                        <tr key={myProduct?._id} className={`${index % 2 === 0 ? "bg-gray-50" : "bg-gray-100"} whitespace-nowrap`}>
+                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{myProduct?.Category}</td>
+                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{myProduct?.name}</td>
+                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{myProduct?.originalPrice}</td>
+                            <td className="py-3 px-4 text-base text-gray-500 font-medium">{myProduct?.userEmail}</td>
                             <td className="py-3 px-4 text-base text-gray-500 font-medium text-center">
-                                <span className="cursor-pointer inline-flex justify-center items-center py-0.5 px-2.5 border-none rounded-full bg-green-100 text-xs text-indigo-800 font-medium">
-                                    available</span>
+                                <span onClick={() => handleAdvertisement(myProduct?._id)}
+                                    className="cursor-pointer inline-flex justify-center items-center py-0.5 px-2.5 border-none rounded-full bg-green-100 text-xs text-indigo-800 font-medium">
+                                    {myProduct?.available ? "" : 'available'}
+                                </span>
                             </td>
                             <td className="py-3 px-4 text-base text-gray-500 font-medium">
-                                {booking?.location}
+                                {myProduct?.location}
                             </td>
                             <td className="py-3 px-4 flex justify-center items-center space-x-6 text-base text-gray-700 font-medium">
-                                <button onClick={() => handleDeleteProduct(booking?._id)} type="button" className="text-sm text-red-500 font-semibold hover:text-red-600">Delete</button>
+                                <button onClick={() => handleDeleteProduct(myProduct?._id)} type="button" className="text-sm text-red-500 font-semibold hover:text-red-600">Delete</button>
                             </td>
                         </tr>
                     ))
