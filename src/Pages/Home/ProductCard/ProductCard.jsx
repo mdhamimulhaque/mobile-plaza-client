@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { HiOutlineClock, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
 import { AuthContext } from '../../../context/AuthProvider';
@@ -5,9 +6,20 @@ import { AuthContext } from '../../../context/AuthProvider';
 const ProductCard = ({ product, handleModalOpen }) => {
     const { user } = useContext(AuthContext);
 
+    const { data: allSellers = [], isLoading, refetch } = useQuery({
+        queryKey: ['all-sellers'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/all-sellers`);
+            const data = await res.json();
+            return data
+        }
+    });
+
+    console.log(allSellers)
 
 
-    const { condition, description, location, imgURL, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
+
+    const { condition, description, location, imgURL, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
     return (
         <div className="lg:flex shadow-lg px-3">
             <img
@@ -30,7 +42,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
                 </div>
 
                 <div className='text-sm leading-[25px]'>
-                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle /> <strong>{user?.displayName}</strong></h4>
+                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle /> <strong>{userName ? userName : 'no name'}</strong></h4>
                     <h4 className='flex items-center gap-2'><span><HiOutlineLocationMarker /></span> {location}</h4>
                     <div>{description}</div>
                     <h4><strong>Year of Used:</strong> {yearOfUse}+</h4>

@@ -18,7 +18,7 @@ const AddProduct = () => {
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
 
-
+    console.log(user)
 
     const handleAddProduct = data => {
         const image = data.image[0];
@@ -37,7 +37,6 @@ const AddProduct = () => {
         let year = today.getFullYear();
 
         let date = `${day}-${month}-${year}`;
-
 
 
         // ---> get imgbb img url
@@ -61,8 +60,9 @@ const AddProduct = () => {
                         condition: data.condition,
                         description: data.description,
                         location: data.location,
-                        userEmail: user?.email
-
+                        userEmail: user?.email,
+                        userName: user?.displayName,
+                        isVerified: false
                     }
 
                     // ---> data store to server (axios)
