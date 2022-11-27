@@ -18,8 +18,6 @@ const AddProduct = () => {
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
 
-    console.log(user)
-
     const handleAddProduct = data => {
         const image = data.image[0];
         const formData = new FormData();
@@ -62,7 +60,6 @@ const AddProduct = () => {
                         location: data.location,
                         userEmail: user?.email,
                         userName: user?.displayName,
-                        isVerified: false
                     }
 
                     // ---> data store to server (axios)

@@ -59,21 +59,21 @@ const AllSellers = () => {
 
     // ---> handle verified user
     const handleVerifiedSeller = (email) => {
-        // fetch(`http://localhost:5000/all-sellers/${email}`, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify()
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.modifiedCount > 0) {
-        //             setIsVerifiedSeller(true);
-        //             toast.success('user verified has been completed');
-        //             refetch()
-        //         }
-        //     })
+        fetch(`http://localhost:5000/all-sellers/${email}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    setIsVerifiedSeller(true);
+                    toast.success('user verified has been completed');
+                    refetch()
+                }
+            })
     }
 
     return (
@@ -91,7 +91,7 @@ const AllSellers = () => {
                                 <div className="flex items-center justify-between gap-4">
                                     <h2 className="text-lg font-semibold text-gray-900 -mt-1 flex items-center gap-2">
                                         {seller?.name}
-                                        {seller?.isVerified && <HiCheckBadge className='text-indigo-600' />}
+                                        {seller?.isVerifiedUser && <HiCheckBadge className='text-indigo-600' />}
                                     </h2>
                                     <HiOutlineTrash
                                         onClick={() => handleDeleteSeller(seller?.email)}
