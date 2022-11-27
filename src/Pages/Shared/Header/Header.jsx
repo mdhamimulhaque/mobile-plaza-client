@@ -73,7 +73,6 @@ const Header = () => {
                         )
                     }
                     {
-                        (isAdmin || isSeller) &&
                         <Link to="/dashboard"
                             className="py-2 px-2 font-semibold text-gray-800 rounded hover:text-indigo-700 md:mx-2"
                         >

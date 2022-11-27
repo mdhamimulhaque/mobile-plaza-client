@@ -6,12 +6,15 @@ import { AuthContext } from '../../../context/AuthProvider';
 import useAdmin from '../../../hooks/useAdmin';
 import useSeller from '../../../hooks/useSeller';
 import placeHolderUser from '../../../img/placeholderUser.png';
+import { toast } from 'react-toastify';
+import useBuyer from '../../../hooks/useBuyer';
 
 
 const Sidebar = ({ setIsOpen, isOpen }) => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
     const [isSeller] = useSeller(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
 
     const sidebarNavItems = [
         {
@@ -20,6 +23,16 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
         },
 
     ]
+    const buyerNavItems = [
+
+        {
+            name: 'My Orders',
+            path: '/dashboard/my-orders'
+        },
+
+    ]
+
+    // --->admin
 
     const adminNavItem = [
         {
@@ -32,7 +45,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
         },
 
     ]
-
+    // --->seller
     const sellerNavItem = [
         {
             name: 'My Products',
@@ -49,6 +62,15 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
 
     ]
 
+    // ---> handle logout
+    const handleLogOut = () => {
+        logOut()
+            .then(result => {
+                localStorage.removeItem('accessToken')
+                toast.success('logOut successfully');
+            })
+    }
+
 
     return (
         <div className="flex flex-col fixed w-64 h-screen px-4 py-8 bg-white border-r">
@@ -64,6 +86,21 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                 <nav>
                     {
                         sidebarNavItems.map(items =>
+                            <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
+                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+
+                                <span className="mx-4 font-medium">{items.name}</span>
+
+                            </Link>
+
+                        )
+                    }
+                    {/*--- buyers--- */}
+                    {isBuyer &&
+                        buyerNavItems.map(items =>
                             <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -125,6 +162,11 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                     <Link to="/">
                         <button type="button" className="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                             Back To Home
+                        </button>
+                    </Link>
+                    <Link to="/" onClick={handleLogOut} >
+                        <button type="button" className="py-2 px-4 mt-2 bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                            Log Out
                         </button>
                     </Link>
                 </div>

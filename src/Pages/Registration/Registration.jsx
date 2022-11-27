@@ -179,7 +179,7 @@ const Registration = () => {
                                     <select id='role' className="pl-2 pr-3 py-2 mb-4 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-600"
                                         {...register('role')}
                                     >
-                                        <option>user</option>
+                                        <option>buyer</option>
                                         <option>seller</option>
                                     </select>
                                 </div>
