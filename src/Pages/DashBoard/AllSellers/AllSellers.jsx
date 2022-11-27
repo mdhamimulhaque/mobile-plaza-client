@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
 import { HiOutlineTrash, HiCheckBadge } from "react-icons/hi2";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -7,7 +7,6 @@ import UserPlaceholderImg from "../../../img/placeholderUser.png";
 import Loading from '../../Shared/components/Loading/Loading';
 
 const AllSellers = () => {
-    const [isVerifiedSeller, setIsVerifiedSeller] = useState(false)
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['all-sellers'],
         queryFn: async () => {
@@ -69,7 +68,6 @@ const AllSellers = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    setIsVerifiedSeller(true);
                     toast.success('user verified has been completed');
                     refetch()
                 }

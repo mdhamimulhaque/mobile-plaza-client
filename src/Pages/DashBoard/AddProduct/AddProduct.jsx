@@ -97,7 +97,7 @@ const AddProduct = () => {
                         <div className="flex flex-wrap -mx-3">
                             <div className="w-full px-3 mb-6">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="productName">
+                                    htmlFor="productName">
                                     Product Name
                                 </label>
                                 <input
@@ -107,7 +107,7 @@ const AddProduct = () => {
                             </div>
                             <div className="w-full px-3 mb-6">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="location">
+                                    htmlFor="location">
                                     Location
                                 </label>
                                 <input
@@ -117,7 +117,7 @@ const AddProduct = () => {
                             </div>
                             <div className="w-full px-3 mb-6">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="yearOfUse">
+                                    htmlFor="yearOfUse">
                                     Year of purchase
                                 </label>
                                 <input
@@ -128,7 +128,7 @@ const AddProduct = () => {
 
                             <div className="w-full px-3 mb-6 md:w-1/2 ">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="ordinalPrice" required>
+                                    htmlFor="ordinalPrice" required>
                                     Ordinal Price
                                 </label>
                                 <input
@@ -139,7 +139,7 @@ const AddProduct = () => {
 
                             <div className="w-full px-3 mb-6 md:w-1/2 ">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="resellPrice">
+                                    htmlFor="resellPrice">
                                     Resell Price
                                 </label>
                                 <input
@@ -151,7 +151,7 @@ const AddProduct = () => {
 
                             <div className="w-full px-3 mb-6 md:w-1/3">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="category">
+                                    htmlFor="category">
                                     Category
                                 </label>
                                 <div className="relative">
@@ -178,7 +178,7 @@ const AddProduct = () => {
 
                             <div className="w-full px-3 mb-6 md:w-1/3">
                                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                                    for="condition">
+                                    htmlFor="condition">
                                     Condition Type
                                 </label>
                                 <div className="relative">
@@ -229,7 +229,7 @@ const AddProduct = () => {
 
 
                     </div>
-                    <p className='text-red-400 py-2 text-center'>{productError}</p>
+                    <p className='text-red-600 py-2 text-center'>{productError}</p>
                     <div className="flex items-center justify-end p-5 text-center bg-gray-200">
                         <button type="submit"
                             className="inline-flex items-center px-6 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">

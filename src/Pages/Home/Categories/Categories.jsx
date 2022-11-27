@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../context/AuthProvider';
+import React from 'react';
 import CategoryCard from '../../Shared/components/CategoryCard/CategoryCard';
 import Loading from '../../Shared/components/Loading/Loading';
 
 const Categories = () => {
-    const { user } = useContext(AuthContext)
+
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {

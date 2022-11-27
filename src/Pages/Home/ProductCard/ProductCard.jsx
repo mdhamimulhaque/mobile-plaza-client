@@ -1,25 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+
+import React from 'react';
 import { HiOutlineClock, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
-import { AuthContext } from '../../../context/AuthProvider';
+
 
 const ProductCard = ({ product, handleModalOpen }) => {
-    const { user } = useContext(AuthContext);
-
-    const { data: allSellers = [], isLoading, refetch } = useQuery({
-        queryKey: ['all-sellers'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/all-sellers`);
-            const data = await res.json();
-            return data
-        }
-    });
-
-    console.log(allSellers)
 
 
 
     const { condition, description, location, imgURL, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
+
+
     return (
         <div className="lg:flex shadow-lg px-3">
             <img
@@ -27,7 +17,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
                 src={imgURL}
                 alt="img" />
 
-            <div className="flex flex-col justify-between py-6 lg:mx-6">
+            <div className="flex flex-col justify-between py-6 lg:mx-6 w-full">
                 <span className="w-20 inline-flex justify-center items-center py-0.5 px-2.5 border-none rounded-full bg-indigo-100 text-xs text-indigo-600 font-medium">{Category}</span>
                 <h2 className='text-xl font-semibold'>{name}</h2>
                 <div className="price_box flex gap-3">
@@ -51,7 +41,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
 
 
 
-                <span className="mt-3 text-gray-500 flex  justify-between">
+                <span className="mt-3 text-gray-500 flex justify-between">
                     <div className='flex items-center'>
                         <HiOutlineClock className='mr-2' /> {postedTime}
                     </div>

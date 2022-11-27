@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import BookingModal from '../../Shared/components/BookingModal/BookingModal';
@@ -10,6 +10,8 @@ const SingleCategory = () => {
     const [modalData, setModalData] = useState({})
     const [isModalOpen, setIsOpenModal] = useState(false);
     const { loading, setLoading } = useContext(AuthContext);
+
+
 
     if (loading) {
         return <Loading />
@@ -25,6 +27,11 @@ const SingleCategory = () => {
         setModalData('');
         setIsOpenModal(!isModalOpen)
     }
+
+
+
+
+
     return (
         <section className='xl::h-screen'>
             <div className="container px-6 py-10 mx-auto">
