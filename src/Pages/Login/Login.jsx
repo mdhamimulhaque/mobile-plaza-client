@@ -76,7 +76,7 @@ const Login = () => {
 
         //     // ---> data store to server (axios)
         axios
-            .put('http://localhost:5000/users', {
+            .put('https://mobile-plaza-server.vercel.app/users', {
                 body: userInfo
             })
             .then((res) => {

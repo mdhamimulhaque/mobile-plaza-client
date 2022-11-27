@@ -10,7 +10,7 @@ const AllBuyersTable = () => {
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ['all-buyers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/all-buyers`);
+            const res = await fetch(`https://mobile-plaza-server.vercel.app/all-buyers`);
             const data = await res.json();
             return data
         }
@@ -36,7 +36,7 @@ const AllBuyersTable = () => {
             if (result.isConfirmed) {
 
                 // --->method
-                fetch(`http://localhost:5000/all-sellers/${email}`, {
+                fetch(`https://mobile-plaza-server.vercel.app/all-sellers/${email}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
