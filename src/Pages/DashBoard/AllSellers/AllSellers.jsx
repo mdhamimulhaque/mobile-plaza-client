@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { HiOutlineTrash } from "react-icons/hi2";
+import Swal from 'sweetalert2';
 import UserPlaceholderImg from "../../../img/placeholderUser.png";
 import Loading from '../../Shared/components/Loading/Loading';
 
 const AllSellers = () => {
-    const { data: allSellers = [], isLoading } = useQuery({
+    const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['all-sellers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/all-sellers`);
@@ -17,7 +18,42 @@ const AllSellers = () => {
     if (isLoading) {
         return <Loading />
     }
-    console.log(allSellers)
+
+    // ---> handle delete seller
+    const handleDeleteSeller = (email) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4F46E5',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // --->method
+                fetch(`http://localhost:5000/all-sellers/${email}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            // ---> toast delete msg
+                            Swal.fire(
+                                'Deleted!',
+                                'Your Product has been deleted.',
+                                'success'
+                            )
+                            refetch()
+                        }
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+
+    }
 
     return (
         <>
@@ -33,7 +69,9 @@ const AllSellers = () => {
                             <div className="">
                                 <div className="flex items-center justify-between gap-4">
                                     <h2 className="text-lg font-semibold text-gray-900 -mt-1">{seller?.name}</h2>
-                                    <HiOutlineTrash className='text-red-600 hover:text-red-700 text-lg cursor-pointer' />
+                                    <HiOutlineTrash
+                                        onClick={() => handleDeleteSeller(seller?.email)}
+                                        className='text-red-600 hover:text-red-700 text-lg cursor-pointer' />
                                 </div>
                                 <p className="text-gray-700 pr-6"><strong>Email: </strong>{seller?.email}</p>
                                 <p className="text-gray-700"><strong>Phone:</strong> {seller?.phone}</p>
