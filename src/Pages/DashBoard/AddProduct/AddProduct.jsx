@@ -166,8 +166,6 @@ const AddProduct = () => {
                                         <option>samsung</option>
                                         <option>xiaomi</option>
                                         <option>realme</option>
-                                        <option>oppo</option>
-                                        <option>huawei</option>
                                     </select>
                                     <div
                                         className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">

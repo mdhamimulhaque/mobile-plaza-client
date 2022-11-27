@@ -18,6 +18,7 @@ const MyProductsTable = () => {
         }
     })
 
+
     if (isLoading) {
         return <Loading />
     }

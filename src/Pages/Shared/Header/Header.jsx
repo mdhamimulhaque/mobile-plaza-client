@@ -2,11 +2,15 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../context/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
+import useSeller from '../../../hooks/useSeller';
 import LOGO from '../../../img/logo.png'
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(true);
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
 
 
     const handleResponsiveNav = () => {
@@ -69,7 +73,7 @@ const Header = () => {
                         )
                     }
                     {
-                        user?.uid &&
+                        (isAdmin || isSeller) &&
                         <Link to="/dashboard"
                             className="py-2 px-2 font-semibold text-gray-800 rounded hover:text-indigo-700 md:mx-2"
                         >
