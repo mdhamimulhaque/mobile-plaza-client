@@ -13,7 +13,6 @@ import MyBuyers from "../Pages/DashBoard/MyBuyers/MyBuyers";
 import AllSellers from "../Pages/DashBoard/AllSellers/AllSellers";
 import AddProduct from "../Pages/DashBoard/AddProduct/AddProduct";
 import AllBuyers from "../Pages/DashBoard/AllBuyers/AllBuyers";
-import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import SellerRoute from "./SellerRoute/SellerRoute";
 import Dashboard from "../Pages/DashBoard/Dashboard/Dashboard";

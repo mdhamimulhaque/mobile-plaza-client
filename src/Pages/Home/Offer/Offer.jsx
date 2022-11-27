@@ -12,7 +12,7 @@ const Offer = () => {
                     <div className="space-x-2 text-center py-2 lg:py-0">
                         <span>Get Your offer Today</span>
                     </div>
-                    <Link to="/" rel="noreferrer noopener" className="py-2 px-4  bg-white hover:bg-white focus:ring-indigo-500 focus:ring-offset-indigo-200 text-indigo-600  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Shop Now</Link>
+                    <Link to="/categories" rel="noreferrer noopener" className="py-2 px-4  bg-white hover:bg-white focus:ring-indigo-500 focus:ring-offset-indigo-200 text-indigo-600  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">Shop Now</Link>
                 </div>
             </div>
         </div>

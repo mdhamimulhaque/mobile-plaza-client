@@ -15,7 +15,6 @@ const MyOrders = () => {
         }
     });
 
-    console.log(myOrders)
 
     if (isLoading) {
         return <Loading />
