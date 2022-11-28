@@ -1,6 +1,6 @@
 
 ### `Mobile Plaza`
-Live [http://localhost:3000](http://localhost:3000) 
+Live [https://mobile-plaza-c1fd7.web.app]
 
 ### `Tools Used  :`
 

@@ -13,7 +13,7 @@ const MyProductsTable = () => {
     const { data: myProductsData = [user?.email], isLoading, refetch } = useQuery({
         queryKey: ['my-products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/my-products?email=${user?.email}`)
+            const res = await fetch(`https://mobile-plaza-server.vercel.app/my-products?email=${user?.email}`)
             const data = await res.json()
             return data
         }
@@ -41,7 +41,7 @@ const MyProductsTable = () => {
             if (result.isConfirmed) {
 
                 // --->method
-                fetch(`http://localhost:5000/my-products/${id}`, {
+                fetch(`https://mobile-plaza-server.vercel.app/my-products/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -64,7 +64,7 @@ const MyProductsTable = () => {
 
     // ---> handle advertisement
     const handleAdvertisement = (id) => {
-        fetch(`http://localhost:5000/my-products/${id}`, {
+        fetch(`https://mobile-plaza-server.vercel.app/my-products/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
