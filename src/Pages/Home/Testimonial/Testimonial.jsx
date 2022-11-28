@@ -9,7 +9,7 @@ const Testimonial = () => {
   const { data: reviews = [], isLoading } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
-      const res = await fetch(`https://mobile-plaza-server.vercel.app/reviews`)
+      const res = await fetch(`http://localhost:5000/reviews`)
       const data = await res.json()
       return data
     }

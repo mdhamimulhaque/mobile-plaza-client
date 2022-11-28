@@ -64,7 +64,7 @@ const AddProduct = () => {
 
                     // ---> data store to server (axios)
                     axios
-                        .post(`https://mobile-plaza-server.vercel.app/add-product?email=${user?.email}`, {
+                        .post(`http://localhost:5000/add-product?email=${user?.email}`, {
                             body: productInfo
                         })
                         .then((res) => {

@@ -13,9 +13,9 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [loginUserEmail, setLoginUserEmail] = useState('');
-    const [userEmail, setUserEmail] = useState();
     const navigate = useNavigate();
     const location = useLocation();
+
 
     const [token] = useToken(loginUserEmail);
 
@@ -51,7 +51,6 @@ const Login = () => {
                     const email = res.user?.email;
                     const userImg = res.user?.phoneNumber;
                     const name = res.user?.displayName;
-                    setUserEmail(email);
                     saveUserInfo(name, userImg, email);
                     setLoginUserEmail(email);
                     navigate(from, { replace: true });
@@ -76,7 +75,7 @@ const Login = () => {
 
         //     // ---> data store to server (axios)
         axios
-            .put('https://mobile-plaza-server.vercel.app/users', {
+            .put('http://localhost:5000/users', {
                 body: userInfo
             })
             .then((res) => {

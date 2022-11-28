@@ -9,6 +9,7 @@ import useToken from '../../hooks/useToken';
 import Loading from '../Shared/components/Loading/Loading';
 
 
+
 const Registration = () => {
     const { createUser, updateUser, loading, setLoading } = useContext(AuthContext);
     const [regiError, setRegiError] = useState('');
@@ -19,6 +20,9 @@ const Registration = () => {
 
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
+    if (loading) {
+        return <Loading />
+    }
     if (token) {
         navigate('/')
     }

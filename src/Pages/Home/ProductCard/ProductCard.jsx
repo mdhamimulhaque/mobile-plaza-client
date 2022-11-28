@@ -1,13 +1,19 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiOutlineClock, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
+import { HiCheckBadge } from "react-icons/hi2";
 
 
 const ProductCard = ({ product, handleModalOpen }) => {
+    const { condition, description, location, imgURL, userEmail, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
+    const [verifyUser, setVerifyUser] = useState('')
 
-
-
-    const { condition, description, location, imgURL, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
+    // --->verify user badge
+    useEffect(() => {
+        fetch(`http://localhost:5000/seller-role?email=${userEmail}`)
+            .then(res => res.json())
+            .then(data => setVerifyUser(data[0]?.isVerifiedUser))
+    }, [userEmail])
 
 
     return (
@@ -32,7 +38,12 @@ const ProductCard = ({ product, handleModalOpen }) => {
                 </div>
 
                 <div className='text-sm leading-[25px]'>
-                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle /> <strong>{userName ? userName : 'no name'}</strong></h4>
+                    <h4 className='flex items-center gap-2'><HiOutlineUserCircle />
+                        <strong>{userName ? userName : 'no name'}</strong>
+                        {
+                            verifyUser && <HiCheckBadge className='text-indigo-600' />
+                        }
+                    </h4>
                     <h4 className='flex items-center gap-2'><span><HiOutlineLocationMarker /></span> {location}</h4>
                     <div>{description}</div>
                     <h4><strong>Year of Used:</strong> {yearOfUse}+</h4>

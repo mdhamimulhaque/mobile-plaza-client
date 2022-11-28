@@ -8,6 +8,7 @@ import useSeller from '../../../hooks/useSeller';
 import placeHolderUser from '../../../img/placeholderUser.png';
 import { toast } from 'react-toastify';
 import useBuyer from '../../../hooks/useBuyer';
+import { HiOutlineHome, HiOutlineShoppingBag, HiOutlineUsers, HiOutlineUserGroup, HiOutlineShoppingCart, HiOutlineFolderPlus } from "react-icons/hi2";
 
 
 const Sidebar = ({ setIsOpen, isOpen }) => {
@@ -19,7 +20,8 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
     const sidebarNavItems = [
         {
             name: 'DashBoard',
-            path: '/dashboard'
+            path: '/dashboard',
+            icon: <HiOutlineHome />
         },
 
     ]
@@ -27,7 +29,8 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
 
         {
             name: 'My Orders',
-            path: '/dashboard/my-orders'
+            path: '/dashboard/my-orders',
+            icon: <HiOutlineShoppingCart />
         },
 
     ]
@@ -37,11 +40,13 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
     const adminNavItem = [
         {
             name: 'All Sellers',
-            path: '/dashboard/all-sellers'
+            path: '/dashboard/all-sellers',
+            icon: <HiOutlineUsers />
         },
         {
             name: 'All Buyers',
-            path: '/dashboard/all-buyers'
+            path: '/dashboard/all-buyers',
+            icon: <HiOutlineUserGroup />
         },
 
     ]
@@ -49,15 +54,18 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
     const sellerNavItem = [
         {
             name: 'My Products',
-            path: '/dashboard/my-products'
+            path: '/dashboard/my-products',
+            icon: <HiOutlineShoppingBag />
         },
         {
             name: 'Add Product',
-            path: '/dashboard/add-product'
+            path: '/dashboard/add-product',
+            icon: <HiOutlineFolderPlus />
         },
         {
             name: 'My Buyers',
-            path: '/dashboard/my-buyers'
+            path: '/dashboard/my-buyers',
+            icon: <HiOutlineUserGroup />
         },
 
     ]
@@ -87,10 +95,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                     {
                         sidebarNavItems.map(items =>
                             <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                {items.icon}
 
                                 <span className="mx-4 font-medium">{items.name}</span>
 
@@ -102,10 +107,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                     {isBuyer &&
                         buyerNavItems.map(items =>
                             <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                {items.icon}
 
                                 <span className="mx-4 font-medium">{items.name}</span>
 
@@ -119,10 +121,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                         isSeller &&
                         sellerNavItem.map(items =>
                             <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                                {items.icon}
 
                                 <span className="mx-4 font-medium">{items.name}</span>
 
@@ -138,11 +137,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                         isAdmin &&
                         adminNavItem.map(items =>
                             <Link key={items.name} to={items.path} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md  hover:bg-gray-200 hover:text-gray-700" >
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-
+                                {items.icon}
                                 <span className="mx-4 font-medium">{items.name}</span>
 
                             </Link>
