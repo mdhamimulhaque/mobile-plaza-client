@@ -67,17 +67,22 @@ const Footer = () => {
                                 <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Categories</span>
                                 <ul className="list-unstyled">
                                     <li>
-                                        <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT License</a>
+                                        <Link to="/categories"
+                                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm">samsung</Link>
                                     </li>
                                     <li>
-                                        <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
+                                        <Link to="/categories"
+                                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm">iPhone</Link>
                                     </li>
                                     <li>
-                                        <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/privacy?ref=njs-profile">Privacy Policy</a>
+                                        <Link to="/categories"
+                                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm">xiaomi</Link>
                                     </li>
                                     <li>
-                                        <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
+                                        <Link to="/categories"
+                                            className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm">realme</Link>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
