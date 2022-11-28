@@ -18,6 +18,7 @@ import SellerRoute from "./SellerRoute/SellerRoute";
 import Dashboard from "../Pages/DashBoard/Dashboard/Dashboard";
 import MyOrders from "../Pages/DashBoard/MyOrders/MyOrders";
 import BuyersRoute from "./BuyersRoute/BuyersRoute";
+import MyWishList from "../Pages/DashBoard/MyWishList/MyWishList";
 
 
 
@@ -73,6 +74,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/my-orders',
                 element: <BuyersRoute>
                     <MyOrders />
+                </BuyersRoute>
+            },
+            {
+                path: '/dashboard/my-wishlist',
+                element: <BuyersRoute>
+                    <MyWishList />
                 </BuyersRoute>
             },
             {

@@ -8,7 +8,7 @@ import useSeller from '../../../hooks/useSeller';
 import placeHolderUser from '../../../img/placeholderUser.png';
 import { toast } from 'react-toastify';
 import useBuyer from '../../../hooks/useBuyer';
-import { HiOutlineHome, HiOutlineShoppingBag, HiOutlineUsers, HiOutlineUserGroup, HiOutlineShoppingCart, HiOutlineFolderPlus } from "react-icons/hi2";
+import { HiOutlineHome, HiOutlineHeart, HiOutlineShoppingBag, HiOutlineUsers, HiOutlineUserGroup, HiOutlineShoppingCart, HiOutlineFolderPlus } from "react-icons/hi2";
 
 
 const Sidebar = ({ setIsOpen, isOpen }) => {
@@ -31,6 +31,11 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
             name: 'My Orders',
             path: '/dashboard/my-orders',
             icon: <HiOutlineShoppingCart />
+        },
+        {
+            name: 'My Wish List',
+            path: '/dashboard/my-wishlist',
+            icon: <HiOutlineHeart />
         },
 
     ]

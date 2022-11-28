@@ -1,20 +1,57 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { HiOutlineClock, HiOutlineCalendar, HiOutlineLocationMarker, HiOutlineUserCircle } from "react-icons/hi";
-import { HiCheckBadge } from "react-icons/hi2";
+import { HiCheckBadge, HiOutlineHeart, HiHeart } from "react-icons/hi2";
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../context/AuthProvider';
+
 
 
 const ProductCard = ({ product, handleModalOpen }) => {
-    const { condition, description, location, imgURL, userEmail, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
-    const [verifyUser, setVerifyUser] = useState('')
+    const { _id, condition, description, location, imgURL, userEmail, userName, Category, name, originalPrice, resellPrice, yearOfUse, postedDate, postedTime } = product;
+    const [verifyUser, setVerifyUser] = useState('');
+    const [wishList, setWishList] = useState(false);
+    const { user } = useContext(AuthContext)
+
 
     // --->verify user badge
     useEffect(() => {
         fetch(`http://localhost:5000/seller-role?email=${userEmail}`)
             .then(res => res.json())
             .then(data => setVerifyUser(data[0]?.isVerifiedUser))
+            .catch(err => console.log(err))
     }, [userEmail])
 
+    // ---> handle wish list
+    const handleWishList = (id) => {
+        setWishList(true)
+        const wishlistData = {
+            productName: name,
+            userEmail: user?.email,
+            price: originalPrice,
+            Category: Category,
+            imgURL: imgURL,
+            location: location
+        }
+
+        // --->store wishlist data
+        fetch(`http://localhost:5000/wish-list`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(wishlistData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast.success('product added to wishlist')
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
+    }
 
     return (
         <div className="lg:flex shadow-lg px-3">
@@ -24,7 +61,15 @@ const ProductCard = ({ product, handleModalOpen }) => {
                 alt="img" />
 
             <div className="flex flex-col justify-between py-6 lg:mx-6 w-full">
-                <span className="w-20 inline-flex justify-center items-center py-0.5 px-2.5 border-none rounded-full bg-indigo-100 text-xs text-indigo-600 font-medium">{Category}</span>
+                <div className='flex justify-between items-center'>
+                    <span className="w-20 inline-flex justify-center items-center py-0.5 px-2.5 border-none rounded-full bg-indigo-100 text-xs text-indigo-600 font-medium">{Category}</span>
+                    {
+                        wishList ?
+                            <HiHeart className='text-red-600 text-2xl' /> :
+                            <HiOutlineHeart onClick={() => handleWishList(_id)} className='cursor-pointer text-2xl' />
+                    }
+                </div>
+
                 <h2 className='text-xl font-semibold'>{name}</h2>
                 <div className="price_box flex gap-3">
                     <div className='flex flex-col my-1'>
