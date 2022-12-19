@@ -16,7 +16,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
 
     // --->verify user badge
     useEffect(() => {
-        fetch(`https://mobile-plaza-server.vercel.app/seller-role?email=${userEmail}`)
+        fetch(`http://localhost:5000/seller-role?email=${userEmail}`)
             .then(res => res.json())
             .then(data => setVerifyUser(data[0]?.isVerifiedUser))
             .catch(err => console.log(err))
@@ -35,7 +35,7 @@ const ProductCard = ({ product, handleModalOpen }) => {
         }
 
         // --->store wishlist data
-        fetch(`https://mobile-plaza-server.vercel.app/wish-list`, {
+        fetch(`http://localhost:5000/wish-list`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

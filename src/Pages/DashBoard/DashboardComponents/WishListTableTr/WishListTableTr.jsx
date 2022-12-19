@@ -1,7 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const WishListTableTr = ({ WList }) => {
+const WishListTableTr = ({ WList, refetch }) => {
+    // ---> handle remove wishlist
+    const handleRemoveWishlist = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4F46E5',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // --->method
+                fetch(`http://localhost:5000/wish-list/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            // ---> toast delete msg
+                            Swal.fire(
+                                'Deleted!',
+                                'Wish Product remove successfully',
+                                'success'
+                            )
+                            refetch()
+                        }
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+    }
 
     return (
         <tr className="bg-gray-100 border-b-2 border-gray-200 ">
@@ -31,6 +65,12 @@ const WishListTableTr = ({ WList }) => {
                         Buy
                     </button>
                 </Link>
+
+                <button type="button"
+                    onClick={() => handleRemoveWishlist(WList._id)}
+                    className="py-2 px-4 mt-2 bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                    Remove
+                </button>
             </td>
 
         </tr>

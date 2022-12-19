@@ -67,11 +67,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
             path: '/dashboard/add-product',
             icon: <HiOutlineFolderPlus />
         },
-        {
-            name: 'My Buyers',
-            path: '/dashboard/my-buyers',
-            icon: <HiOutlineUserGroup />
-        },
+
 
     ]
 
@@ -90,7 +86,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
             <div className='flex justify-between items-center'>
                 <div className="text-xl font-semibold text-gray-800 flex items-center gap-1">
                     <img className='w-12' src={LOGO} alt="logo" />
-                    <span>Mobile Plaza</span>
+                    <span><Link to='/'>Mobile Plaza</Link></span>
                 </div>
                 <HiOutlineXMark className='text-2xl' onClick={() => setIsOpen(!isOpen)} />
             </div>

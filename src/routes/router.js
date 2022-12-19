@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:categoryName',
-                loader: ({ params }) => fetch(`https://mobile-plaza-server.vercel.app/products/${params.categoryName}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.categoryName}`),
                 element: <PrivateRoute>
                     < SingleCategory />
                 </PrivateRoute>

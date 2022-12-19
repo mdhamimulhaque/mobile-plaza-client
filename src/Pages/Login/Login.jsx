@@ -16,7 +16,6 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-
     const [token] = useToken(loginUserEmail);
 
     let from = location.state?.from?.pathname || "/";
@@ -30,8 +29,8 @@ const Login = () => {
         // --->email login
         loginUser(email, password)
             .then(data => {
-                if (data.user.uid) {
-                    setLoginUserEmail(email);
+                if (data.user) {
+                    setLoginUserEmail(data.user.email);
                     setLoginError('');
                     toast.success('login successfully!!');
                     navigate(from, { replace: true });
@@ -75,7 +74,7 @@ const Login = () => {
 
         //     // ---> data store to server (axios)
         axios
-            .put('https://mobile-plaza-server.vercel.app/users', {
+            .put('http://localhost:5000/users', {
                 body: userInfo
             })
             .then((res) => {

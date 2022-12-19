@@ -10,7 +10,7 @@ const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['all-sellers'],
         queryFn: async () => {
-            const res = await fetch(`https://mobile-plaza-server.vercel.app/all-sellers`);
+            const res = await fetch(`http://localhost:5000/all-sellers`);
             const data = await res.json();
             return data
         }
@@ -35,7 +35,7 @@ const AllSellers = () => {
             if (result.isConfirmed) {
 
                 // --->method
-                fetch(`https://mobile-plaza-server.vercel.app/all-sellers/${email}`, {
+                fetch(`http://localhost:5000/all-sellers/${email}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -58,7 +58,7 @@ const AllSellers = () => {
 
     // ---> handle verified user
     const handleVerifiedSeller = (email) => {
-        fetch(`https://mobile-plaza-server.vercel.app/all-sellers/${email}`, {
+        fetch(`http://localhost:5000/all-sellers/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

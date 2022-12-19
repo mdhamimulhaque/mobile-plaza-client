@@ -7,7 +7,7 @@ const Advertisement = () => {
     const { data: advertisementProduct, isLoading } = useQuery({
         queryKey: ['advertisement'],
         queryFn: async () => {
-            const res = await fetch(`https://mobile-plaza-server.vercel.app/advertisement`)
+            const res = await fetch(`http://localhost:5000/advertisement`)
             const data = await res.json()
             return data
         }
