@@ -17,7 +17,7 @@ const WishListTableTr = ({ WList, refetch }) => {
             if (result.isConfirmed) {
 
                 // --->method
-                fetch(`http://localhost:5000/wish-list/${id}`, {
+                fetch(`https://mobile-plaza-server.vercel.app/wish-list/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -59,7 +59,7 @@ const WishListTableTr = ({ WList, refetch }) => {
             <td className="px-16 py-2">
                 <span>{WList?.location}</span>
             </td>
-            <td className="px-16 py-2">
+            <td className="px-16 py-2 flex gap-2">
                 <Link to="/dashboard/checkout" >
                     <button type="button" className="py-2 px-4 mt-2 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         Buy

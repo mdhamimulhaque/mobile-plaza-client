@@ -88,7 +88,7 @@ const Sidebar = ({ setIsOpen, isOpen }) => {
                     <img className='w-12' src={LOGO} alt="logo" />
                     <span><Link to='/'>Mobile Plaza</Link></span>
                 </div>
-                <HiOutlineXMark className='text-2xl' onClick={() => setIsOpen(!isOpen)} />
+                <HiOutlineXMark className='text-2xl cursor-pointer' onClick={() => setIsOpen(!isOpen)} />
             </div>
 
             <div className="flex flex-col justify-between flex-1 mt-6">

@@ -34,7 +34,7 @@ const BookingModal = ({ isModalOpen, handleCloseModal, modalData, setIsOpenModal
         }
 
         axios
-            .post('http://localhost:5000/booking', {
+            .post('https://mobile-plaza-server.vercel.app/booking', {
                 body: bookingInfo
             })
             .then((res) => {

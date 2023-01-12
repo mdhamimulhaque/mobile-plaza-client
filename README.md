@@ -2,6 +2,9 @@
 ### `Mobile Plaza`
 Live [https://mobile-plaza-c1fd7.web.app]
 
+### `Admin Access  :`
+Email: admin@gmail.com Password : 123456
+
 ### `Tools Used  :`
 
 <h4>Client side : </h4>
