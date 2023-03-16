@@ -109,9 +109,14 @@ const Login = () => {
                     <div className="absolute bg-black opacity-60 inset-0 z-0"></div>
                 </div>
                 <div className="w-full py-6 z-20">
-                    <h1 className="my-6 text-white flex items-center justify-center font-semibold text-3xl">
+                    <h1 className=" text-white flex items-center justify-center font-semibold text-3xl">
                         <img src={LOGO} alt="logo" /> <span>Mobile Plaza</span>
                     </h1>
+                    <article className='my-3 border border-red-500'>
+                        <h4 className='text-red-500'>For Admin Role:</h4>
+                        <small>Email: admin@gmail.com </small> <br />
+                        <small>Password : 123456</small>
+                    </article>
                     <div className="sm:w-2/3 px-4 lg:px-0 mx-auto flex justify-center mb-2">
                         <button onClick={handleGoogleLogin} className="flex items-center justify-center py-2 px-4 text-sm uppercase rounded bg-white hover:bg-gray-100 text-indigo-500 border border-transparent hover:border-transparent hover:text-gray-700 shadow-md hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"          >
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mr-3" viewBox="0 0 48 48"            >
